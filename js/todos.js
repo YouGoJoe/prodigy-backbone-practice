@@ -17,5 +17,11 @@ var App = new (Backbone.View.extend({
 }))({el: document.body});
 
 $(document).ready(function () {
-    App.start(); 
+    App.start();
+
+    var initTodo = new App.Models.Todo({description:'My First Todo'});
+    var initTodoView = new App.Views.Todo({model: initTodo});
+    initTodoView.render();
+
+    document.body.append(initTodoView.el);
 });
