@@ -6,23 +6,30 @@ var App = new (Backbone.View.extend({
         '<h1>ToDo List</h1>' +
         '<div id="app"></div>'
     ),
+
     render: function () {
         this.$el.html(this.template());
         return this;
     },
     start: function () {
         this.$el.append(this.render().el);
+
+        // Initialize some data
+        App.Todos = new App.Collections.Todos();
+        App.Todos.add({ description: 'My First Todo' });
+        App.Todos.add({ description: 'The other Todo' });
+        var initTodosView = new App.Views.TodoList({ collection: App.Todos });
+        initTodosView.render();
+        $('#app').append(initTodosView.el);
+
+        // Add the form
+        var todoForm = new App.Views.TodoForm();
+        todoForm.render();
+        $('#app').append(todoForm.el);
     }
 
 }))({ el: document.body });
 
 $(document).ready(function () {
     App.start();
-
-    var initTodos = new App.Collections.Todos();
-    initTodos.add({ description: 'My First Todo' });
-    initTodos.add({ description: 'The other Todo' })
-    var initTodosView = new App.Views.TodoList({ collection: initTodos });
-    initTodosView.render();
-    $('#app').append(initTodosView.el);
 });
