@@ -1,9 +1,9 @@
 // Todo View
 App.Views.Todo = Backbone.View.extend({
     template: _.template(
-        '<div class="<%= isComplete ? \'complete\' : \'\' %>">' +
-        '<input type="checkbox" <%= isComplete ? \'checked\' : \'\' %> />' +
-        '<span><%= description %></span>' +
+        '<div class="todo-item">' +
+        '<span class="<%= isComplete ? \'complete\' : \'\' %>"><input type="checkbox" <%= isComplete ? \'checked\' : \'\' %> />' +
+        '<%= description %></span>' +
         '<i class="material-icons clear">clear</i>' +
         '</div>'
     ),
@@ -34,7 +34,7 @@ App.Views.Todo = Backbone.View.extend({
 // Create Todo View
 App.Views.TodoForm = Backbone.View.extend({
     template: _.template(
-        '<form><input type="text" id="todoText" /><button>Save</button></form>'
+        '<form class="todo-form"><input type="text" id="todoText" /><button>Save</button></form>'
     ),
 
     events: {
