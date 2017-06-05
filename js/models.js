@@ -5,6 +5,7 @@ App.Models.Todo = Backbone.Model.extend({
 
     toggleComplete: function () {
         this.set({ 'isComplete': !this.get('isComplete') });
+        this.save();
     },
 
     // Use LocalStorage

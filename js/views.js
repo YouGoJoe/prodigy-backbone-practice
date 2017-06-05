@@ -1,25 +1,32 @@
 // Todo View
 App.Views.Todo = Backbone.View.extend({
     template: _.template(
-      '<div class="<%= isComplete ? \'complete\' : \'\' %>">' +
-      '<input type="checkbox" <%= isComplete ? \'checked\' : \'\' %> />' + 
-      '<span><%= description %></span>' +
-      '</div>'
+        '<div class="<%= isComplete ? \'complete\' : \'\' %>">' +
+        '<input type="checkbox" <%= isComplete ? \'checked\' : \'\' %> />' +
+        '<span><%= description %></span>' +
+        '<i class="material-icons clear">clear</i>' +
+        '</div>'
     ),
 
-    initialize: function(){
-        this.model.on('change', this.render, this);
+    initialize: function () {
+        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'destroy', this.remove);
     },
 
     events: {
         'change input': 'toggleComplete',
+        'click i': 'deleteTodo'
     },
 
-    toggleComplete: function(){
+    toggleComplete: function () {
         this.model.toggleComplete();
     },
 
-    render: function(){
+    deleteTodo: function () {
+        this.model.destroy();
+    },
+
+    render: function () {
         this.$el.html(this.template(this.model.attributes));
     }
 });
@@ -36,12 +43,14 @@ App.Views.TodoForm = Backbone.View.extend({
 
     addTodo: function (e) {
         e.preventDefault();
-        let newTodo = new App.Models.Todo({description: $('#todoText')[0].value});
+        let inputEl = $('#todoText')[0];
+        let newTodo = new App.Models.Todo({ description: inputEl.value });
         newTodo.save();
         App.Todos.add(newTodo);
+        inputEl.value = null;
     },
 
-    render: function(){
+    render: function () {
         this.$el.html(this.template());
     }
 });
@@ -49,18 +58,18 @@ App.Views.TodoForm = Backbone.View.extend({
 // Collection of Todos view
 App.Views.TodoList = Backbone.View.extend({
 
-    initialize: function(){
+    initialize: function () {
         this.listenTo(App.Todos, 'add', this.renderTodo)
     },
 
-    render: function(){
+    render: function () {
         this.collection.forEach(this.renderTodo, this);
         return this;
     },
 
-    renderTodo: function(todoItem){
-        var todoView = new App.Views.Todo({model: todoItem});
+    renderTodo: function (todoItem) {
+        var todoView = new App.Views.Todo({ model: todoItem });
         todoView.render();
-        this.$el.append(todoView.el);        
+        this.$el.append(todoView.el);
     }
 });

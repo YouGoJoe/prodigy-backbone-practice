@@ -1,3 +1,9 @@
 .complete {
     text-decoration: line-through;
 }
+
+.material-icons.clear{
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
