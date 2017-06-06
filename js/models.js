@@ -1,3 +1,10 @@
+/* Todo model
+ * 
+ * cid {string} identity property given by BackboneJS used to track objects
+ * isComplete {bool} defaults to false, controls the class that shows a Todo as complete
+ * description {string} the text to show for the Todo 
+*/
+
 App.Models.Todo = Backbone.Model.extend({
     defaults: {
         'isComplete': false,
