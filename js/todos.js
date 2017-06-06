@@ -2,12 +2,7 @@ var App = new (Backbone.View.extend({
     Models: {},
     Views: {},
     Collections: {},
-    template: _.template(
-        '<div class="main-container">' +
-        '<div class="todo-list-container"><h1>ToDo List</h1>' +
-        '<div id="app"></div>' +
-        '</div></div>' 
-    ),
+    template: _.template($('#main-template').html()),
 
     render: function () {
         this.$el.html(this.template());

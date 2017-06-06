@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>Todos</title>
-  <link rel="stylesheet" href="css/app.css"/>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -14,10 +13,43 @@
   <script src="node_modules/underscore/underscore-min.js"></script>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/backbone/backbone.js"></script>
+
+  <!-- Templates -->
+
+  <script type="text/template" id="main-template">
+    <div class="main-container">
+      <div class="todo-list-container">
+        <h1>ToDo List</h1>
+        <div id="app"></div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="todo-item">
+    <div class="todo-item">
+      <span class="<%= isComplete ? 'complete' : '' %>">
+        <input type="checkbox" <%= isComplete ? 'checked' : '' %> />
+        <%= description %>
+      </span>
+      <i class="material-icons clear">clear</i>
+    </div>
+  </script>
+
+  <script type="text/template" id="todo-form">
+    <form class="todo-form">
+      <input type="text" id="todoText" />
+      <button>Save</button>
+    </form>
+  </script>
+
+  <!-- App Logic -->
+
   <script src="js/todos.js"></script>
   <script src="js/models.js"></script>
   <script src="js/views.js"></script>
   <script src="js/collections.js"></script>
 
-  </body>
+
+</body>
+
 </html>
