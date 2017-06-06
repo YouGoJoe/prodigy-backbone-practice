@@ -17,12 +17,12 @@ var App = new (Backbone.View.extend({
         App.Todos.add({ description: 'The other Todo' });
         var initTodosView = new App.Views.TodoList({ collection: App.Todos });
         initTodosView.render();
-        $('#app').append(initTodosView.el);
+        $('.app').append(initTodosView.el);
 
         // Add the form
         var todoForm = new App.Views.TodoForm();
         todoForm.render();
-        $('#app').append(todoForm.el);
+        $('.app').append(todoForm.el);
     }
 
 }))({ el: document.body });

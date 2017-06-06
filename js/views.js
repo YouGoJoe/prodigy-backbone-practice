@@ -35,11 +35,11 @@ App.Views.TodoForm = Backbone.View.extend({
 
     addTodo: function (e) {
         e.preventDefault();
-        let inputEl = $('#todoText')[0];
+        let inputEl = this.$('.todo__input')[0];
         let newTodo = new App.Models.Todo({ description: inputEl.value });
         newTodo.save();
         App.Todos.add(newTodo);
-        inputEl.value = null;
+        inputEl.value = '';
     },
 
     render: function () {

@@ -7,7 +7,7 @@
 
 App.Models.Todo = Backbone.Model.extend({
     defaults: {
-        'isComplete': false,
+        isComplete: false,
     },
 
     toggleComplete: function () {
