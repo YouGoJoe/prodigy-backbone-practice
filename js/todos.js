@@ -1,32 +1,27 @@
-var App = new (Backbone.View.extend({
+// Initialize global object
+let App = {
     Models: {},
     Views: {},
     Collections: {},
-    template: _.template($('#main-template').html()),
+};
 
-    render: function () {
-        this.$el.html(this.template());
-        return this;
-    },
-    start: function () {
-        this.$el.append(this.render().el);
+$(document).ready(function () {    
 
-        // Initialize some data
-        App.Todos = new App.Collections.Todos();
-        App.Todos.add({ description: 'My First Todo' });
-        App.Todos.add({ description: 'The other Todo' });
-        var initTodosView = new App.Views.TodoList({ collection: App.Todos });
-        initTodosView.render();
-        $('.app').append(initTodosView.el);
+    // Render the main container for the app
+    const appView = new App.Views.Main();
+    $(document.body).append(appView.render().el)
 
-        // Add the form
-        var todoForm = new App.Views.TodoForm();
-        todoForm.render();
-        $('.app').append(todoForm.el);
-    }
+    // Global collection of Todos, with some starter data
+    App.Todos = new App.Collections.Todos([
+        { description: 'My First Todo' },
+        { description: 'The other Todo' }
+    ]);
 
-}))({ el: document.body });
+    // Render the list of Todos
+    const initTodosView = new App.Views.TodoList({ collection: App.Todos });
+    $('.app').append(initTodosView.render().el);
 
-$(document).ready(function () {
-    App.start();
+    // Render the form to add Todos
+    const todoForm = new App.Views.TodoForm();    
+    $('.app').append(todoForm.render().el);
 });

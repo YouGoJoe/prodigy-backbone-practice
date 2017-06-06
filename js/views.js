@@ -1,3 +1,13 @@
+// App View
+App.Views.Main = Backbone.View.extend({
+    template: _.template($('#main-template').html()),
+
+    render: function () {
+        this.$el.html(this.template());
+        return this;
+    },
+});
+
 // Todo View
 App.Views.Todo = Backbone.View.extend({
     template: _.template($('#todo-item').html()),
@@ -22,6 +32,7 @@ App.Views.Todo = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template(this.model.attributes));
+        return this;
     }
 });
 
@@ -44,6 +55,7 @@ App.Views.TodoForm = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template());
+        return this;
     }
 });
 
