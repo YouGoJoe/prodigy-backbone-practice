@@ -15,6 +15,11 @@ App.Models.Todo = Backbone.Model.extend({
         this.save();
     },
 
+    destroy: function(options = {}){
+        this.trigger('destroy', this, this.collection, options);
+        this.sync('delete', this, options);
+    },
+
     // Use LocalStorage
     sync: function (method, model, options = {}) {
         let key = 'Todo-' + model.cid;
