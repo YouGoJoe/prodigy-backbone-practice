@@ -1,5 +1,5 @@
 body{
-    background-color: slategray;
+    background-color: rgb(112, 128, 144);
 }
 
 h1{
@@ -17,7 +17,7 @@ h1{
 .todo-list-container{
     width: 400px;
     padding: 30px;
-    background-color: whitesmoke;
+    background-color: rgb(245,245,245);
 }
 
 .todo-item {
@@ -28,7 +28,7 @@ h1{
 
     font-size:20px;
     padding: 12px 0px;
-    border-bottom: 1px solid slategray;
+    border-bottom: 1px solid rgb(112, 128, 144);
 }
 
 .todo-form{
@@ -37,15 +37,15 @@ h1{
 
 .complete {
     text-decoration: line-through;
-    color: gray;
+    color: rgb(128,128,128);
 }
 
 .material-icons.clear{
-    color: red;
+    color: rgb(256,0,0);
     font-size: 20px;
     cursor: pointer;
 }
 
 .material-icons.clear:hover{
-    color: darkred;
+    color: rgb(139,0,0);
 }
