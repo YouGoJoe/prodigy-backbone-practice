@@ -6,7 +6,7 @@ var App = new (Backbone.View.extend({
         '<div class="main-container">' +
         '<div class="todo-list-container"><h1>ToDo List</h1>' +
         '<div id="app"></div>' +
-        '</div></div>'
+        '</div></div>' 
     ),
 
     render: function () {
