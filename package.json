@@ -1,0 +1,24 @@
+{
+  "name": "prodigy-backbone-practice",
+  "version": "1.0.0",
+  "description": "ToDo app to test",
+  "main": "index.js",
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YouGoJoe/prodigy-backbone-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YouGoJoe/prodigy-backbone-practice/issues"
+  },
+  "homepage": "https://github.com/YouGoJoe/prodigy-backbone-practice#readme"
+}
