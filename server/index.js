@@ -34,13 +34,13 @@ app
 
     })
     .delete('/:id', function (request, response) {
-
+        let key = 'Todo-' + request.params.id;
+        localStorage.removeItem(key);
+        response.status(200).send();
     });
 
-// Start  the server
+// Start the server
 
 app.listen(8000, function () {
     console.log('server up');
-
-    localStorage.setItem('Todo-2', JSON.stringify({ foo2: "bar2" }));
 });
