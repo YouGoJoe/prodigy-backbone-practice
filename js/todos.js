@@ -11,15 +11,13 @@ $(document).ready(function () {
     const appView = new App.Views.Main();
     $(document.body).append(appView.render().el)
 
-    // Global collection of Todos, with some starter data
-    App.Todos = new App.Collections.Todos([
-        { description: 'My First Todo' },
-        { description: 'The other Todo' }
-    ]);
+    // Global collection of Todos
+    App.Todos = new App.Collections.Todos();
+    App.Todos.fetch();
 
     // Render the list of Todos
     const initTodosView = new App.Views.TodoList({ collection: App.Todos });
-    $('.app').append(initTodosView.render().el);
+    $('.app').append(initTodosView.render().el);    
 
     // Render the form to add Todos
     const todoForm = new App.Views.TodoForm();    

@@ -6,7 +6,7 @@
 */
 
 App.Models.Todo = Backbone.Model.extend({
-    url: 'http://localhost:8000',
+    urlRoot: 'http://localhost:8000/',
 
     defaults: {
         isComplete: false,
