@@ -72,7 +72,7 @@ describe('Todos', function () {
                             expect(res.body).to.have.property('isComplete');
                             expect(res.body.description).to.be.false;
                             expect(res.body).to.have.property('id');
-                            expect(res.body.id).to.be(result.body.id);
+                            expect(res.body.id).to.equal(result.body.id);
                         });
                 });
         });
@@ -80,6 +80,46 @@ describe('Todos', function () {
         it('it shoud error on an ID that does not exist', function () {
             chai.request(server)
                 .get('/Boris')
+                .end(function (err, res) {
+                    expect(res.status).to.be(400);
+                    expect(res.body).to.be.a('string');
+                    expect(res.body).to.equal('Todo Boris not found.');
+                });
+        });
+    });
+
+    describe('PUT a Todo', function () {
+        it('it should update a Todo', function () {
+
+            let todo = { description: 'Testing todo', isComplete: false };
+
+            chai.request(server)
+                .post('/')
+                .send(todo)
+                .end(function (error, result) {
+
+                    let updateTodo = Object.assign({}, result.body);
+                    updateTodo.description = 'My new description';
+
+                    chai.request(server)
+                        .put('/' + updateTodo.id)
+                        .send(updateTodo)
+                        .end(function (err, res) {
+                            expect(res.status).to.be(200);
+                            expect(res.body).to.be.a('object');
+                            expect(res.body).to.have.property('description');
+                            expect(res.body.description).to.equal('My new description');
+                            expect(res.body).to.have.property('isComplete');
+                            expect(res.body.description).to.be.false;
+                            expect(res.body).to.have.property('id');
+                            expect(res.body.id).to.equal(result.body.id);
+                        });
+                });
+        });
+
+        it('it shoud error on an ID that does not exist', function () {
+            chai.request(server)
+                .put('/Boris')
                 .end(function (err, res) {
                     expect(res.status).to.be(400);
                     expect(res.body).to.be.a('string');
