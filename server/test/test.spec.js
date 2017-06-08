@@ -136,6 +136,8 @@ describe('Todos', function () {
                 .post('/')
                 .send(todo)
                 .end(function (postErr, postRes) {
+                    expect(postRes.status).to.be(200);
+                    expect(postRes.body.id).to.be.a('number');
                     chai.request(server)
                         .delete('/' + postRes.body.id)
                         .end(function (deleteErr, deleteRes) {
