@@ -40,7 +40,7 @@ describe('Todos', function () {
             chai.request(server)
                 .post('/')
                 .send(todo)
-                .end(function(err, res){
+                .end(function (err, res) {
                     expect(res.status).to.be(200);
                     expect(res.body).to.be.a('object');
                     expect(res.body).to.have.property('description');
@@ -48,7 +48,42 @@ describe('Todos', function () {
                     expect(res.body).to.have.property('isComplete');
                     expect(res.body.description).to.be.false;
                     expect(res.body).to.have.property('id');
-                    expect(res.body.description).to.equal(1); // Since we flush the DB prior to the tests we can be sure this will be true
+                    expect(res.body.id).to.be.a('number');
+                });
+        });
+    });
+
+    describe('GET a Todo', function () {
+        it('it should get a Todo', function () {
+
+            let todo = { description: 'Testing todo', isComplete: false };
+
+            chai.request(server)
+                .post('/')
+                .send(todo)
+                .end(function (error, result) {
+                    chai.request(server)
+                        .get('/' + result.body.id)
+                        .end(function (err, res) {
+                            expect(res.status).to.be(200);
+                            expect(res.body).to.be.a('object');
+                            expect(res.body).to.have.property('description');
+                            expect(res.body.description).to.equal('Testing todo');
+                            expect(res.body).to.have.property('isComplete');
+                            expect(res.body.description).to.be.false;
+                            expect(res.body).to.have.property('id');
+                            expect(res.body.id).to.be(result.body.id);
+                        });
+                });
+        });
+
+        it('it shoud error on an ID that does not exist', function () {
+            chai.request(server)
+                .get('/Boris')
+                .end(function (err, res) {
+                    expect(res.status).to.be(400);
+                    expect(res.body).to.be.a('string');
+                    expect(res.body).to.equal('Todo Boris not found.');
                 });
         });
     });
