@@ -127,4 +127,29 @@ describe('Todos', function () {
                 });
         });
     });
+
+    describe('DELETE a todo', function () {
+        it('it should delete a Todo', function () {
+            let todo = { description: 'Testing todo', isComplete: false };
+
+            chai.request(server)
+                .post('/')
+                .send(todo)
+                .end(function (postErr, postRes) {
+                    chai.request(server)
+                        .delete('/' + postRes.body.id)
+                        .end(function (deleteErr, deleteRes) {
+                            expect(deleteRes.status).to.be(200);
+                            chai.request(server)
+                                .get('/' + postRes.body.id)
+                                .end(function (getErr, getRes) {
+                                    // Make sure it's gone from the DB
+                                    expect(getRes.status).to.be(400);
+                                    expect(getRes.body).to.be.a('string');
+                                    expect(getRes.body).to.equal('Todo ' + postRes.body.id + ' not found.');
+                                });
+                        });
+                });
+        });
+    });
 });
