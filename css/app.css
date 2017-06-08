@@ -1,26 +1,26 @@
-body{
-    background-color: slategray;
+.body__main{
+    background-color: rgb(112, 128, 144);
 }
 
-h1{
+.header__title{
     text-align: center;
     text-decoration: underline;
 }
 
-.main-container {
+.container__main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.todo-list-container{
+.container__todos{
     width: 400px;
     padding: 30px;
-    background-color: whitesmoke;
+    background-color: rgb(245,245,245);
 }
 
-.todo-item {
+.todo__item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -28,24 +28,24 @@ h1{
 
     font-size:20px;
     padding: 12px 0px;
-    border-bottom: 1px solid slategray;
+    border-bottom: 1px solid rgb(112, 128, 144);
 }
 
-.todo-form{
+.todo__form{
     padding-top: 30px;
 }
 
-.complete {
+.todo__title--completed {
     text-decoration: line-through;
-    color: gray;
+    color: rgb(128,128,128);
 }
 
-.material-icons.clear{
-    color: red;
+.todo__clear-button{
+    color: rgb(256,0,0);
     font-size: 20px;
     cursor: pointer;
 }
 
-.material-icons.clear:hover{
-    color: darkred;
+.todo__clear-button:hover{
+    color: rgb(139,0,0);
 }

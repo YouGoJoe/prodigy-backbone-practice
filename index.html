@@ -4,20 +4,52 @@
 <head>
   <meta charset="utf-8">
   <title>Todos</title>
-  <link rel="stylesheet" href="css/app.css"/>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body class="body__main">
 
   <script src="node_modules/underscore/underscore-min.js"></script>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/backbone/backbone.js"></script>
+
+  <!-- Templates -->
+
+  <script type="text/template" id="main-template">
+    <div class="container__main">
+      <div class="container__todos">
+        <h1 class="header__title">ToDo List</h1>
+        <div class="app"></div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="todo-item">
+    <div class="todo__item">
+      <span class="<%= isComplete ? 'todo__title--completed' : '' %>">
+        <input type="checkbox" <%= isComplete ? 'checked' : '' %> />
+        <%= description %>
+      </span>
+      <i class="material-icons todo__clear-button">clear</i>
+    </div>
+  </script>
+
+  <script type="text/template" id="todo-form">
+    <form class="todo__form">
+      <input type="text" class="todo__input" />
+      <button>Save</button>
+    </form>
+  </script>
+
+  <!-- App Logic -->
+
   <script src="js/todos.js"></script>
   <script src="js/models.js"></script>
   <script src="js/views.js"></script>
   <script src="js/collections.js"></script>
 
-  </body>
+
+</body>
+
 </html>

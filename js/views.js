@@ -1,12 +1,16 @@
+// App View
+App.Views.Main = Backbone.View.extend({
+    template: _.template($('#main-template').html()),
+
+    render: function () {
+        this.$el.html(this.template());
+        return this;
+    },
+});
+
 // Todo View
 App.Views.Todo = Backbone.View.extend({
-    template: _.template(
-        '<div class="todo-item">' +
-        '<span class="<%= isComplete ? \'complete\' : \'\' %>"><input type="checkbox" <%= isComplete ? \'checked\' : \'\' %> />' +
-        '<%= description %></span>' +
-        '<i class="material-icons clear">clear</i>' +
-        '</div>'
-    ),
+    template: _.template($('#todo-item').html()),
 
     initialize: function () {
         this.listenTo(this.model, 'change', this.render);
@@ -28,14 +32,13 @@ App.Views.Todo = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template(this.model.attributes));
+        return this;
     }
 });
 
 // Create Todo View
 App.Views.TodoForm = Backbone.View.extend({
-    template: _.template(
-        '<form class="todo-form"><input type="text" id="todoText" /><button>Save</button></form>'
-    ),
+    template: _.template($('#todo-form').html()),
 
     events: {
         submit: 'addTodo'
@@ -43,15 +46,16 @@ App.Views.TodoForm = Backbone.View.extend({
 
     addTodo: function (e) {
         e.preventDefault();
-        let inputEl = $('#todoText')[0];
+        let inputEl = this.$('.todo__input')[0];
         let newTodo = new App.Models.Todo({ description: inputEl.value });
         newTodo.save();
         App.Todos.add(newTodo);
-        inputEl.value = null;
+        inputEl.value = '';
     },
 
     render: function () {
         this.$el.html(this.template());
+        return this;
     }
 });
 
