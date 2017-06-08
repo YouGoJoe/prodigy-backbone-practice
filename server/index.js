@@ -79,3 +79,5 @@ app
 app.listen(8000, function () {
     console.log('server up');
 });
+
+module.exports = app;
